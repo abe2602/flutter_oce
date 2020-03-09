@@ -55,21 +55,71 @@ Widget internetImage(String url) => CachedNetworkImage(
       fit: BoxFit.cover,
     );
 
-
 Widget getAppBar() => AppBar(
-  backgroundColor: const Color.fromRGBO(139, 157, 195, 10),
-  title: Column(
-    children: const <Widget>[
-      Center(
-          child: Text(
+      backgroundColor: const Color.fromRGBO(139, 157, 195, 10),
+      title: Column(
+        children: const <Widget>[
+          Center(
+              child: Text(
             'Citizen Observatory',
             style: TextStyle(color: Colors.black),
           )),
-      Center(
-          child: Text(
+          Center(
+              child: Text(
             'of Floods',
             style: TextStyle(color: Colors.black),
           )),
-    ],
-  ),
-);
+        ],
+      ),
+    );
+
+Widget getChoseInformationButtonWithIcon(
+        BuildContext context,
+        String buttonText,
+        IconData icon,
+        double iconSize,
+        Function onTapFunction) =>
+
+    Flexible(
+      flex: 1,
+      child: Padding(
+        padding: EdgeInsets.all(MediaQuery.of(context).size.width / iconSize),
+        child: FlatButton(
+            color: const Color.fromRGBO(139, 157, 195, 10),
+            onPressed: () => onTapFunction(),
+            child: Row(
+              children: <Widget>[
+                Icon(
+                  icon,
+                  size: iconSize,
+                ),
+                Flexible(
+                    child: Container(child: Center(child: Text(buttonText)))),
+              ],
+            )),
+      ),
+    );
+
+Widget getChoseInformationButtonWithImage(
+    BuildContext context,
+    String buttonText,
+    Widget image,
+    double iconSize,
+    Function onTapFunction) =>
+
+    Flexible(
+      flex: 1,
+      child: Padding(
+        padding: const EdgeInsets.all(15),
+        child: FlatButton(
+            color: const Color.fromRGBO(139, 157, 195, 10),
+            onPressed: () => onTapFunction(),
+            child: Row(
+              children: <Widget>[
+                image,
+                Flexible(
+                    child: Container(child: Center(child: Text(buttonText)))),
+              ],
+            )),
+      ),
+    );

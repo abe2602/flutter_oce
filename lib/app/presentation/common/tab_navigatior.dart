@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:state_navigation/app/presentation/favorites/favorites_view.dart';
 import 'package:state_navigation/app/presentation/profile/profile_view.dart';
 import 'package:state_navigation/app/presentation/reports/reports_view.dart';
 import 'package:state_navigation/app/presentation/share/share_view.dart';
 
 import '../../../app/presentation/common/bottom_navigation.dart';
-import '../../../app/presentation/movie/movie_list_view.dart';
 
 /// SOBRE MODAL: para que um modal seja exibido,
 /// basta que o Navigator.push seja chamado

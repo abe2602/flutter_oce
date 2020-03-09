@@ -1,6 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:state_navigation/app/presentation/common/view_utils.dart';
+import 'package:state_navigation/app/presentation/share/rain_intensity/rain_intensity_rain_view.dart';
+import 'package:state_navigation/app/presentation/share/riverbed_flood/riverbed_flood_view.dart';
+import 'package:state_navigation/app/presentation/share/street_flood/street_flood_view.dart';
 
 class ShareView extends StatefulWidget {
   @override
@@ -11,33 +15,41 @@ class ShareView extends StatefulWidget {
 
 class _ShareViewState extends State<ShareView> {
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: getAppBar(),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              _getChoseInformationButton('ALTURA DA ENCHENTE NAS RUAS', () {}),
-              _getChoseInformationButton(
-                  'ALTURA DA ÁGUA NO LEITO DO RIO', () {}),
-              _getChoseInformationButton('INTENSIDADE DA CHUVA', () {}),
-              _getChoseInformationButton('ENVIAR FOTO', () {}),
-            ],
-          ),
-        ),
-      );
+  Widget build(BuildContext context) {
+    final buttonSize = MediaQuery
+        .of(context)
+        .size
+        .width / 15;
 
-  Widget _getChoseInformationButton(
-          String buttonText, Function onTapFunction) =>
-      Expanded(
-        flex: 1,
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: FlatButton(
-            color: const Color.fromRGBO(139, 157, 195, 10),
-            onPressed: () => onTapFunction,
-            child: Container(child: Center(child: Text(buttonText))),
-          ),
+    return Scaffold(
+      appBar: getAppBar(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            getChoseInformationButtonWithIcon(
+                context, 'STREET FLOOD', Icons.report, buttonSize, () {
+              Navigator.of(context).push(
+                CupertinoPageRoute(builder: (context) => StreetFloodView()),
+              );
+            }),
+            getChoseInformationButtonWithIcon(
+                context, 'RIVERBED WATER', Icons.pool, buttonSize, () {
+              Navigator.of(context).push(
+                CupertinoPageRoute(builder: (context) => RiverBedFloodView()),
+              );
+            }),
+            getChoseInformationButtonWithIcon(
+                context, 'RAIN INTENSITY', Icons.cloud, buttonSize, () {
+              Navigator.of(context).push(
+                CupertinoPageRoute(builder: (context) => RainIntensityView()),
+              );
+            }),
+            getChoseInformationButtonWithIcon(
+                context, 'SEND PICTURE', Icons.camera_alt, buttonSize, () {}),
+          ],
         ),
-      );
+      ),
+    );
+  }
 }
